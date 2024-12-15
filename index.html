@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tembea Kenya</title>
+    <style>
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            color: #2c2c2c; /* Slightly darker for improved readability */
+            background-color: #f5f5f5; /* Softer, warmer background */
+            overflow-x: hidden;
+        }
+
+        /* Navigation Bar */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent for elegance */
+            padding: 15px 30px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            transition: background-color 0.3s ease;
+        }
+
+        .logo {
+            color: #ffffff; /* Bright, classic gold */
+            font-size: 1.5rem;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .hamburger {
+            display: none;
+            font-size: 1.5rem;
+            color: #ffffff;
+            cursor: pointer;
+        }
+
+        ul {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+
+        ul li {
+            margin: 0 15px;
+        }
+
+        ul li a {
+            text-decoration: none;
+            color: #ffffff; /* White for clarity on dark background */
+            font-size: 1rem;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        ul li a:hover {
+            background-color: #8d0b41; /* Soft highlight */
+            color: #fdfdfd;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('./images/hero.jpg') no-repeat center center/cover;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            flex-wrap: wrap;
+        }
+
+        .hero .hero-text {
+            color: #ffffff;
+            text-align: left;
+            margin-bottom: 20px;
+            max-width: 400px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero .hero-text h1 {
+            font-size: 5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .hero-text h2 {
+            font-size: 1.5rem;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+
+        .hero .hero-text p {
+            font-size: 1.2rem;
+            margin: 20px 0;
+            line-height: 1.5rem;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+
+        .button {
+            background-color: #ffd700;
+            color: #2c2c2c; /* Dark text for contrast */
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            border-radius: 5px;
+            transition : background-color 0.4s ease;
+            text-transform: uppercase;
+        }
+
+        .button:hover {
+            background-color: #8d0b41;
+            color: white;
+        }
+
+        /* Cards Layout */
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            max-width: 600px;
+            margin-top: 80px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .card {
+            background: #fef6e0;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 15px;
+        }
+
+        .card-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #8d0b41; /* Deep wine color */
+        }
+
+        .card-description {
+            margin-top: 10px;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            color: #555555;
+        }
+
+        .plan-section {
+            background-color: #fef6e0; /* Softer, warmer shade */
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .plan-section h2 {
+            font-size: 2.5rem;
+            color: #8d0b41;
+            margin-bottom: 20px;
+        }
+
+        .plan-form {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .plan-form input,
+        .plan-form button {
+            padding: 15px;
+            border: 1px solid #d6cfb4;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .plan-form input[type="text"],
+        .plan-form input[type="date"] {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .plan-form button {
+            background-color: #8d0b41;
+            color: #ffffff;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .plan-form button:hover {
+            background-color: #b74c5c;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .plan-form {
+                flex-direction: column;
+            }
+
+            .plan-form input,
+            .plan-form button {
+                width: 100%;
+            }
+        }
+
+        /* Responsive Design for Devices */
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                right: 0;
+                background: rgba(0, 0, 0, 0.9);
+                padding: 10px;
+                display: none;
+            }
+
+            nav ul.active {
+                display: flex;
+            }
+
+            nav .hamburger {
+                display: block;
+                cursor: pointer;
+            }
+
+            nav ul li {
+                margin: 10px 0;
+            }
+
+            .hero {
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+        }
+
+        /* Larger Devices */
+        @media (max-width: 1024px) {
+            .hero .hero-text {
+                left: 50%;
+                transform: translateX(-50%);
+                text-align: center;
+            }
+
+            .cards {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .carousel-container {
+            position: relative;
+            max-width: 1200px;
+            margin: auto;
+            overflow: hidden;
+            gap: 10px;
+            
+        }
+
+        .carousel {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .carousel-item {
+            min-width: 100%;
+            box-sizing: border-box;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 5px;
+        }
+
+        .carousel-item img {
+            width: 100%;
+            border-radius: 10px;
+            margin-top: 10px;
+        }
+        .carousel-item button{
+            background-color: #8d0b41;
+            color: #ffffff;
+            cursor: pointer;
+            border: none;
+            padding: 10px 15px;
+            font-size: 1rem;
+            border-radius: 5px;
+            transition : background-color 0.4s ease;
+            text-transform: uppercase;
+            margin-top: 20px;
+
+        }
+
+        .prev, .next, .play-pause {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(255, 255, 255, 0.8);
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .prev {
+            left: 10px;
+        }
+
+        .next {
+            right: 10px;
+        }
+
+        @media (min-width: 768px) {
+            .carousel-item {
+                min-width: 50%;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .carousel-item {
+                min-width: 33.33%;
+            }
+        }
+        .travel-articles {
+    padding: 60px 20px;
+    background-color: #f9f9f9;
+    text-align: center;
+}
+
+.travel-articles h2 {
+    font-size: 2.5rem;
+    color: #8d0b41;
+    margin-bottom: 30px;
+}
+
+.article-categories {
+    margin-bottom: 30px;
+}
+
+.category-btn {
+    background-color: #20201f;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.category-btn:hover {
+    background-color: #d83056;
+}
+
+.article-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.article-card {
+    background-color: #fef6e0;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.article-card:hover {
+    transform: translateY(-10px);
+}
+
+.article-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.article-card h3 {
+    font-size: 1.6rem;
+    color: #8d0b41;
+    margin-bottom: 10px;
+}
+
+.article-card p {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+.read-more {
+    font-size: 1rem;
+    color: #8d0b41;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.read-more:hover {
+    color: #d83056;
+}
+/* General Styles */
+.trip-itineraries {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    padding: 40px 20px;
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    color: #1e6091;
+    margin-bottom: 10px;
+}
+
+/* Navigation Menu */
+.category-menu {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 40px;
+    border-bottom: 2px solid #ccc;
+}
+
+.category-menu a {
+    text-decoration: none;
+    font-size: 1rem;
+    color: #333;
+    padding: 10px 0;
+    transition: color 0.3s ease;
+}
+
+.category-menu a.active {
+    color: #e76f51;
+    border-bottom: 3px solid #e76f51;
+}
+
+.category-menu a:hover {
+    color: #e76f51;
+}
+
+/* Trip Grid */
+.trips-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.trip-item {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    text-align: left;
+    transition: transform 0.3s ease;
+}
+
+.trip-item img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.trip-item:hover {
+    transform: translateY(-5px);
+}
+
+.trip-duration {
+    color: #e76f51;
+    font-weight: bold;
+    font-size: 0.9rem;
+    margin: 10px 15px 5px;
+}
+
+.trip-title {
+    font-size: 1.2rem;
+    color: #333;
+    margin: 5px 15px 10px;
+}
+
+.trip-desc {
+    font-size: 0.9rem;
+    color: #555;
+    margin: 0 15px 15px;
+}
+
+/* View All Button */
+.view-all .btn-primary {
+    display: inline-block;
+    background-color: #e76f51;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background 0.3s ease;
+}
+
+.view-all .btn-primary:hover {
+    background-color: #c65c3d;
+}
+
+
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">Tembea Kenya</div>
+        <div class="hamburger">&#9776;</div>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Destinations</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-text">
+            <h2>Discover the Beauty of </h2>
+            <h1>KENYA</h1>
+            <p>Embark on a journey through breathtaking landscapes, diverse wildlife, and vibrant cultures. Kenya awaits your adventure.</p>
+            <button class="button">Explore</button>
+        </div>
+
+        <div class="cards">
+            <div class="card">
+                <img src="images/diani beach.jpg" alt="Diani Beach">
+                <div class="card-content">
+                    <h3 class="card-title">Diani Beach</h3>
+                    <p class="card-description">Pristine white sandy beaches on the Kenyan Coast.</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="images/masai mara.jpg" alt="Masai Mara">
+                <div class="card-content">
+                    <h3 class="card-title">Masai Mara</h3>
+                    <p class="card-description">Witness the breathtaking wildebeest migration.</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="images/mt kenya.jpg" alt="Mount Kenya">
+                <div class="card-content">
+                    <h3 class="card-title">Mount Kenya</h3>
+                    <p class="card-description">Adventure awaits at Africa's second-highest peak.</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="images/lake-nakuru.jpg" alt="Lake Nakuru">
+                <div class="card-content">
+                    <h3 class="card-title">Lake Nakuru</h3>
+                    <p class="card-description">Explore the pink flamingo paradise.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Plan Your Kenyan Adventure Section -->
+    <section class="plan-section">
+        <h2>Plan Your Kenyan Adventure</h2>
+        <form class="plan-form">
+            <input type="text" placeholder="Search Destinations">
+            <input type="date" placeholder="Start Date">
+            <input type="date" placeholder="End Date">
+            <button type="button">Explore</button>
+        </form>
+    </section>
+    <div class="carousel-container" aria-label="Kenya Must-Visit Places Carousel">
+        <div class="carousel">
+            <div class="carousel-item" role="group" aria-roledescription="slide">
+                <h2>Maasai Mara National Reserve</h2>
+                <img src="images/hero.jpg" alt="Savannah landscape with wildlife in Maasai Mara">
+                <p>Experience the Great Migration and witness the "Big Five" in their natural habitat.</p>
+                <button >From $150</button>
+            </div>
+            <div class="carousel-item" role="group" aria-roledescription="slide">
+                <h2>Mount Kenya</h2>
+                <img src="images/mount-kenya.jpg" alt="Snow -capped peak of Mount Kenya">
+                <p>Explore Kenya's highest mountain with stunning trails and unique biodiversity.</p>
+                <button>From $100</button>
+            </div>
+            <div class="carousel-item" role="group" aria-roledescription="slide">
+                <h2>Diani Beach</h2>
+                <img src="images/diani beach.jpg" alt="Beautiful beach with white sand and palm trees">
+                <p>Relax on the pristine beaches and enjoy water sports in this coastal paradise.</p>
+                <button>From $80</button>
+            </div>
+            <div class="carousel-item" role="group" aria-roledescription="slide">
+                <h2>Amboseli National Park</h2>
+                <img src="images/Amboseli.jpg" alt="Elephants in Amboseli National Park with Mount Kilimanjaro in the background">
+                <p>Get close to elephants and enjoy breathtaking views of Mount Kilimanjaro.</p>
+                <button>From $120</button>
+            </div>
+            <div class="carousel-item" role="group" aria-roledescription="slide">
+                <h2>Lake Nakuru</h2>
+                <img src="images/lake naks.jpeg" alt="Flamingos at Lake Nakuru">
+                <p>Famous for its flamingos and diverse wildlife, a must-visit for nature lovers.</p>
+                <button>From $90</button>
+            </div>
+            <div class="carousel-item" role="group" aria-roledescription="slide">
+                <h2>Samburu National Reserve</h2>
+                <img src="images/Samburu.jpg" alt="Wildlife in Samburu National Reserve">
+                <p>Discover unique wildlife and stunning landscapes in this lesser-known reserve.</p>
+                <button>From $110</button>
+            </div>
+            <div class="carousel-item" role="group" aria-roledescription="slide">
+                <h2>Tsavo National Park</h2>
+                <img src="images/tsavo.jpeg" alt="Landscape of Tsavo National Park">
+                <p>One of the largest parks in the world, known for its red elephants and diverse ecosystems.</p>
+                <button>From $130</button>
+            </div>
+            <div class="carousel-item" role="group" aria-roledescription="slide">
+                <h2>Hell's Gate National Park</h2>
+                <img src="images/hells gate.jpg" alt="Scenic view of Hell's Gate National Park">
+                <p>Hike, bike, or rock climb in this stunning park with dramatic cliffs and geothermal activity.</p>
+                <button>From $70</button>
+            </div>
+            <div class="carousel-item" role="group" aria-roledescription="slide">
+                <h2>Lake Victoria</h2>
+                <img src="images/lake victoria.jpeg" alt="Scenic view of Lake Victoria">
+                <p>Explore the largest lake in Africa, rich in culture and biodiversity.</p>
+                <button>From $60</button>
+            </div>
+            <div class="carousel-item" role="group" aria-roledescription="slide">
+                <h2>Nairobi National Park</h2>
+                <img src="images/Nairobi-National.jpg" alt="Wildlife in Nairobi National Park with city skyline in the background">
+                <p>Experience wildlife just outside the city, home to lions, rhinos, and more.</p>
+                <button>From $140</button>
+            </div>
+        </div>
+        <button class="prev" aria-label="Previous slide">&#10094;</button>
+        <button class="next" aria-label="Next slide">&#10095;</button>
+
+    </div>
+    <section class="travel-articles">
+        <h2>Explore Kenya Through Our Articles</h2>
+        <div class="article-categories">
+            <button class="category-btn">Destinations</button>
+            <button class="category-btn">Adventure Travel</button>
+            <button class="category-btn">Cultural Insights</button>
+            <button class="category-btn">Travel Tips</button>
+        </div>
+        <div class="article-grid">
+            <div class="article-card">
+                <img src="images/tsavo.jpeg" alt="Maasai Mara Safari">
+                <h3>5 Best Places to Visit in Maasai Mara</h3>
+                <p>Discover the top safari spots in Maasai Mara, home to the Big Five and breathtaking landscapes.</p>
+                <a href="article1.html" class="read-more">Read More</a>
+            </div>
+            <div class="article-card">
+                <img src="images/diani beach.jpg" alt="Diani Beach Relaxation">
+                <h3>A Hidden Paradise: Diani Beach</h3>
+                <p>Uncover the pristine beauty of Diani Beach, a perfect destination for relaxation and adventure.</p>
+                <a href="article2.html" class="read-more">Read More</a>
+            </div>
+            <div class="article-card">
+                <img src="images/masai.jpg" alt="Kenyan Culture Insights">
+                <h3>Exploring Kenya’s Rich Cultural Heritage</h3>
+                <p>Immerse yourself in Kenya’s diverse cultures, from tribal traditions to vibrant festivals.</p>
+                <a href="article3.html" class="read-more">Read More</a>
+            </div>
+            <!-- More articles -->
+        </div>
+    </section>
+    <section class="trip-itineraries">
+        <h2 class="section-title">Trips</h2>
+        <div class="category-menu">
+            <a href="#" class="active">Cities & Towns</a>
+            <a href="#">Lifestyle</a>
+            <a href="#">Shopping</a>
+            <a href="#">Food & Drink</a>
+            <a href="#">Outdoors</a>
+            <a href="#">Culture & History</a>
+            <a href="#">Entertainment</a>
+        </div>
+    
+        <div class="trips-grid">
+            <div class="trip-item">
+                <img src="nairobi-nightlife.jpg" alt="Nairobi Nightlife">
+                <p class="trip-duration">Trip - 3 days</p>
+                <h3 class="trip-title">Explore Nairobi's Bustling Nightlife</h3>
+                <p class="trip-desc">Unwind with music, food, and vibrant energy in Kenya's capital.</p>
+            </div>
+            <div class="trip-item">
+                <img src="maasai-mara-safari.jpg" alt="Maasai Mara Safari">
+                <p class="trip-duration">Trip - 1 week</p>
+                <h3 class="trip-title">Maasai Mara Safari Experience</h3>
+                <p class="trip-desc">Witness the Big Five and breathtaking landscapes on a 7-day journey.</p>
+            </div>
+            <div class="trip-item">
+                <img src="lamu-heritage.jpg" alt="Lamu Heritage Tour">
+                <p class="trip-duration">Trip - 4 days</p>
+                <h3 class="trip-title">Discover Lamu's Cultural Heritage</h3>
+                <p class="trip-desc">Step back in time with Swahili culture and coastal charm.</p>
+            </div>
+            <div class="trip-item">
+                <img src="mount-kenya-climb.jpg" alt="Mount Kenya Climb">
+                <p class="trip-duration">Trip - 5 days</p>
+                <h3 class="trip-title">Climb to the Peaks of Mount Kenya</h3>
+                <p class="trip-desc">Take on an exhilarating adventure to Kenya’s tallest mountain.</p>
+            </div>
+        </div>
+    
+        <div class="view-all">
+            <a href="#" class="btn-primary">View all trips</a>
+        </div>
+    </section>
+    
+    
+    
+    <script>
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('nav ul');
+
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+        const carousel = document.querySelector('.carousel');
+        const items = document.querySelectorAll('.carousel-item');
+        const prevButton = document.querySelector('.prev');
+        const nextButton = document.querySelector('.next');
+        const playPauseButton = document.querySelector('.play-pause');
+
+        let currentIndex = 0;
+        let autoScrollInterval;
+
+        function updateCarousel() {
+            const offset = -currentIndex * 100;
+            carousel.style.transform = `translateX(${offset}%)`;
+        }
+
+        function nextSlide() {
+            currentIndex = (currentIndex + 1) % items.length;
+            updateCarousel();
+        }
+
+        function prevSlide() {
+            currentIndex = (currentIndex - 1 + items.length) % items.length;
+            updateCarousel();
+        }
+
+        function toggleAutoScroll() {
+            if (autoScrollInterval) {
+                clearInterval(autoScrollInterval);
+                autoScrollInterval = null;
+                playPauseButton.textContent = 'Play';
+            } else {
+                autoScrollInterval = setInterval(nextSlide, 3000);
+                playPauseButton.textContent = 'Pause';
+            }
+        }
+
+        nextButton.addEventListener('click', nextSlide);
+        prevButton.addEventListener('click', prevSlide);
+        playPauseButton.addEventListener('click', toggleAutoScroll);
+
+        window.addEventListener('resize', updateCarousel);
+        updateCarousel();
+    </script>
+</body>
+</html>
